@@ -1,16 +1,16 @@
 pipeline {
-    agent any 
+    agent any
     stages {
-        stage('Build') { 
+        stage('package') {
             steps {
                 sh 'mvn clean package'
             }
         }
-        stage {
-          steps {
-            archiveArtifacts artifacts: 'target/*.war', fingerprint: true
-            
-        }   
     }
-  }
+
+    post {
+        always {
+          archiveArtifacts artifacts: 'target/*.war', fingerprint: true  
+        }
+    }
 }
