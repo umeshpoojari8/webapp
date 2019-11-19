@@ -6,8 +6,8 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        post {
-        always {
+        stage {
+          steps {
             archiveArtifacts artifacts: 'target/*.war', fingerprint: true
             
         }   
